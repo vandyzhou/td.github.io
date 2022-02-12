@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		tomcat原理分析 | 
+	 
+	一梦想佳
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+
+
+	<!-- search -->
+	<script>
+		var searchEngine = "https://www.baidu.com/s?wd=";
+		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
+			searchEngine = "https://www.baidu.com/s?wd=";
+		}
+		var homeHost = "vandyzhou.github.io";
+		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
+			homeHost = window.location.host;
+		}
+	</script>
+
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@v1.4.14/dist/Valine.min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+	<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3efe99c287df5a1d6f0d02d187e403c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<header id="header">
+    <a id="title" href="/" class="logo">一梦想佳</a>
+
+	<ul id="menu">
+		<li class="menu-item">
+			<a href="/about" class="menu-item-link">关于我</a>
+		</li>
+	
+
+	
+
+		<li class="menu-item">
+			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
+				<div><img src="/imgs/headpic_favicon.ico" style="border-radius: 25px; position: absolute; margin-top: -15px; margin-left: -15px"/></div>
+				<div class="weixin"><img src="/imgs/weixin.jpg"></div>
+			</a>
+		</li>
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										cases
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/06/18/cases/factorybean%E6%8F%90%E5%89%8D%E5%88%9D%E5%A7%8B%E5%8C%96/">
+                     
+										    factorybean提前初始化
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										spring
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/06/18/spring/spring%20properties%E7%9A%84%E5%87%A0%E7%A7%8D%E5%8A%A0%E8%BD%BD%E6%96%B9%E5%BC%8F/">
+                     
+										    spring properties的几种加载方式
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										tomcat
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2021/06/23/tomcat/tomcat%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+                     
+										    tomcat原理分析
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+                     
+										    搭建博客
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										转债
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2022/02/11/%E8%BD%AC%E5%80%BA/%E8%BD%AC%E5%80%BABlog_0211/">
+                     
+										    转债Blog_0211
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2022/02/09/%E8%BD%AC%E5%80%BA/%E8%BD%AC%E5%80%BA_0209/">
+                     
+										    转债_0209
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+	tomcat原理分析
+</h1>
+<div class="article-meta">
+	
+		<span>
+			阅读量:<span id="/2021/06/23/tomcat/tomcat%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/" class="leancloud_visitors" data-flag-title="tomcat原理分析"></span>
+		</span>
+	
+	<span>一梦想佳</span>
+	<span>2021-06-23 15:03:04</span>
+		<div id="article-categories">
+    
+		<span>Categories：</span>
+            
+    
+
+    
+		<span>Tags：</span>
+            
+                
+                    <span>
+                        <i class="fa fa-tag" aria-hidden="true">
+                        <a href="/tags/源码分析/">源码分析</a>
+                        </i>
+                    </span>
+                
+            
+    
+		</div>
+
+</div>
+
+<div id="article-content">
+	<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p><img src="/imgs/tomcat/tomcat-core/tomcat-core-1.png" alt="tomcat整体架构-1"></p>
+<p><img src="/imgs/tomcat/tomcat-core/tomcat-core-2.png" alt="tomcat整体架构-2"></p>
+<p>从上图我们看出，最核心的两个组件–连接器（Connector）和容器（Container）起到心脏的作用，他们至关重要！下面我们逐一来分析其功能：</p>
+<ul>
+<li>Server表示服务器，提供了一种优雅的方式来启动和停止整个系统，不必单独启停连接器和容器</li>
+<li>Service表示服务，Server可以运行多个服务。比如一个Tomcat里面可运行订单服务、支付服务、用户服务等等</li>
+<li>每个Service可包含多个Connector和一个Container。因为每个服务允许同时支持多种协议，但是每种协议最终执行的Servlet却是相同的</li>
+<li>Connector表示连接器，比如一个服务可以同时支持AJP协议、Http协议和Https协议，每种协议可使用一种连接器来支持</li>
+<li>Container表示容器，可以看做Servlet容器<ul>
+<li>Engine – 引擎</li>
+<li>Host – 主机</li>
+<li>Context – 上下文</li>
+<li>Wrapper – 包装器</li>
+</ul>
+</li>
+<li>Service服务之下还有各种支撑组件，下面简单罗列一下这些组件<ul>
+<li>Manager – 管理器，用于管理会话Session</li>
+<li>Logger – 日志器，用于管理日志</li>
+<li>Loader – 加载器，和类加载有关，只会开放给Context所使用</li>
+<li>Pipeline – 管道组件，配合Valve实现过滤器功能</li>
+<li>Valve – 阀门组件，配合Pipeline实现过滤器功能</li>
+<li>Realm – 认证授权组件</li>
+</ul>
+</li>
+</ul>
+<p>除了连接器和容器，管道组件和阀门组件也很关键，我们通过一张图来看看这两个组件</p>
+<p><img src="/imgs/tomcat/tomcat-core/tomcat-core-3.png" alt="组件"></p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>catalina.sh文件下的start —&gt; 执行Bootstrap.start</p>
+<pre><code class="shell">eval $_NOHUP &quot;\&quot;$_RUNJAVA\&quot;&quot; &quot;\&quot;$CATALINA_LOGGING_CONFIG\&quot;&quot; $LOGGING_MANAGER &quot;$JAVA_OPTS&quot; &quot;$CATALINA_OPTS&quot; \
+      -D$ENDORSED_PROP=&quot;\&quot;$JAVA_ENDORSED_DIRS\&quot;&quot; \
+      -classpath &quot;\&quot;$CLASSPATH\&quot;&quot; \
+      -Djava.security.manager \
+      -Djava.security.policy==&quot;\&quot;$CATALINA_BASE/conf/catalina.policy\&quot;&quot; \
+      -Dcatalina.base=&quot;\&quot;$CATALINA_BASE\&quot;&quot; \
+      -Dcatalina.home=&quot;\&quot;$CATALINA_HOME\&quot;&quot; \
+      -Djava.io.tmpdir=&quot;\&quot;$CATALINA_TMPDIR\&quot;&quot; \
+      org.apache.catalina.startup.Bootstrap &quot;$@&quot; start \
+      &gt;&gt; &quot;$CATALINA_OUT&quot; 2&gt;&amp;1 &quot;&amp;&quot;
+</code></pre>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="/imgs/tomcat/tomcat-core/tomcat-core-4.png" alt="类图"></p>
+<h3 id="Bootstrap-start"><a href="#Bootstrap-start" class="headerlink" title="Bootstrap.start()"></a>Bootstrap.start()</h3><ul>
+<li><p>init()</p>
+<ul>
+<li>createClassLoader<br>  common classloader：通过环境变量common.loader配置，默认：${catalina.base}&#x2F;lib”,”${catalina.base}&#x2F;lib&#x2F;<em>.jar”,”${catalina.home}&#x2F;lib”,”${catalina.home}&#x2F;lib&#x2F;</em>.jar；指定的parent为null；<br>  server classloader：通过环境变量server.loader配置，默认：空；parent为common classloader，命名为catalinaLoader<br>  shared classloader：通过环境变量shared.loader配置，默认：空；parent为common classloader</li>
+<li>设置当前线程的classloader为catalinaLoader<br>  Thread.currentThread().setContextClassLoader(catalinaLoader);</li>
+<li>pre load security class<br>  SecurityClassLoad.securityClassLoad(catalinaLoader);</li>
+<li>初始化Catalina.class，并反射调用setParentClassLoader将parentClassLoader设置为sharedLoader</li>
+<li>反射调用Catalina.load()方法</li>
+</ul>
+</li>
+<li><p>反射调用Catalina.start()方法</p>
+</li>
+<li><p>Catalina.load()</p>
+<ul>
+<li>initNaming()</li>
+<li>解析server.xml获取到Server<br>  使用Digester进行server.xml解析，并将对象赋值给Server对象；Tomcat Digester使用</li>
+<li>执行Server.init()<br>  <img src="/imgs/tomcat/tomcat-core/tomcat-core-5.png" alt="uml"><br>  <img src="/imgs/tomcat/tomcat-core/tomcat-core-6.png" alt="调用关系"></li>
+<li>做了如下几件事：<br>  Server的New–&gt;INITIALIZED的变更&amp;事件的监听者的触发；<br>  NamingResource的New–&gt;INITIALIZED的变更&amp;事件的监听者的触发；<br>  Service的初始化；</li>
+<li>执行service.init()<ul>
+<li>engine.init()<ol>
+<li>getRealm()：server.xml里面配置的engine的realm是：LockOutRealm、UserDatabaseRealm（内存）；Realm主要是做一些权限认证；</li>
+<li>engine的状态New–&gt;INITIALIZED的变更&amp;事件的监听者的触发；</li>
+<li>注册MBean；type&#x3D;Executor,name&#x3D;name</li>
+</ol>
+</li>
+<li>executors.init()<ol>
+<li>executor的状态New–&gt;INITIALIZED的变更&amp;事件的监听者的触发；</li>
+<li>注册MBean；type&#x3D;Engine</li>
+</ol>
+</li>
+<li>mapperListener.init()<ol>
+<li>mapperListener的状态New–&gt;INITIALIZED的变更&amp;事件的监听者的触发；</li>
+<li>注册MBean；type&#x3D;Mapper；</li>
+</ol>
+</li>
+<li>connectors.init()<ol>
+<li>注册MBean；type&#x3D;Connector,port&#x3D;,address&#x3D;；</li>
+<li>protocalHandler.init()<ul>
+<li>endpoint.init()</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Catalina.start()</p>
+<ul>
+<li>server.start()<ul>
+<li>service.start()<ol>
+<li>engine.start()<ul>
+<li>cluster.start()</li>
+<li>realm.start()</li>
+<li>(Container)child.start()：异步</li>
+<li>pipeline.start()</li>
+<li>utilityExecutorWrapper周期执行monitor；执行container下面children的backgroundProcess()方法；Context使用WebappClassLoader进行加载</li>
+</ul>
+</li>
+<li>executor.start()<ul>
+<li>初始化线程池：prefix&#x3D;tomcat-exec、core&#x3D;25、max&#x3D;200、keepAliveTime&#x3D;60000ms、queueSize &#x3D; Integer.Max_Value；</li>
+</ul>
+</li>
+<li>mapperListener.start()</li>
+<li>connector.start()<ul>
+<li>protocolHandler.start()<ul>
+<li>endpoint.start()<ul>
+<li>创建SynchronizedStack&lt;SocketProcessorBase&lt;S&gt;&gt; processorCache</li>
+<li>创建SynchronizedStack&lt;PollerEvent&gt; eventCache</li>
+<li>创建SynchronizedStack&lt;NioChannel&gt; nioChannels</li>
+<li>创建ThreadPoolExecutor，prefix&#x3D;TP-exec-、core&#x3D;10、max&#x3D;200、keepAliveTime&#x3D;60s、queueSize &#x3D; Integer.Max_Value</li>
+<li>创建LimitLatch，size&#x3D;8*1024、类似countdownLatch</li>
+<li>创建poller对象；是个runnable，线程名TP-Poller，后台运行；就是socket编程里面的selector，维护着socket的链接</li>
+<li>创建acceptor对象；也是个runnable，线程名TP-Acceptor，后台运行；就是socket编程里面的acceptor</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>utilityExecutorWrapper周期执行发送event &#x3D; periodic 事件</li>
+</ul>
+</li>
+<li>generateCode &#x3D; true; 默认为false，会动态生成类DigesterGeneratedCodeLoader</li>
+<li>add Shutdown hook：关闭时会触发Catalina.stop()</li>
+<li>await&#x3D;true；默认false；<ul>
+<li>server.await()</li>
+<li>server.stop() &amp; server.destroy()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://juconcurrent.com/2018/11/22/deep-understand-tomcat-008-container/">参考链接</a></p>
+
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2021/07/19/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  hexo搭建github博客
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2021/06/18/spring/spring%20properties%E7%9A%84%E5%87%A0%E7%A7%8D%E5%8A%A0%E8%BD%BD%E6%96%B9%E5%BC%8F/">
+                spring properties的几种加载方式
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			el: '#vcomments',
+			appId: 'GpglQRw5ituoECQznBGT5U5G-gzGzoHsz',
+			appKey: 'D696tKLJVpmDbnVSTeIDmj4s',
+			placeholder: '请输入评论',
+			path: window.location.pathname,
+			avatar: 'retro',
+			highlight: false,
+      recordIP: true,
+      enableQQ: true,
+			requiredFields: ['nick','mail']
+		})
+	
+	
+    // 显示次数
+		function showTime(Counter) {
+			var query = new AV.Query("Counter");
+			if($(".leancloud_visitors").length > 0){
+				var url = $(".leancloud_visitors").attr('id').trim();
+				// where field
+				query.equalTo("words", url);
+				// count
+				query.count().then(function (number) {
+					// There are number instances of MyClass where words equals url.
+					$(document.getElementById(url)).text(number?  number : '--');
+				}, function (error) {
+					// error is an instance of AVError.
+				});
+			}
+		}
+		// 追加pv
+		function addCount(Counter) {
+			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'vandyzhou.github.io';
+			var Counter = AV.Object.extend("Counter");
+			var query = new Counter;
+			query.save({
+				words: url
+			}).then(function (object) {
+			})
+		}
+		$(function () {
+			var Counter = AV.Object.extend("Counter");
+			addCount(Counter);
+			showTime(Counter);
+		});
+	
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">一梦想佳</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			pv
+			<span id="busuanzi_value_site_pv"></span>
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			uv
+			<span id="busuanzi_value_site_uv"></span>
+		</span>
+	
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
