@@ -8,8 +8,6 @@
 	<!-- title -->
 	
 	<title>
-	
-		关于我 | 
 	 
 	一梦想佳
 	</title>
@@ -168,98 +166,40 @@ var _hmt = _hmt || [];
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<h1 id="article-title">
-	关于我
-</h1>
-<div class="article-meta">
+		<div id="index">
 	
-		<span>
-			阅读量:<span id="/about/index.html" class="leancloud_visitors" data-flag-title="关于我"></span>
-		</span>
+		<div class="index-li">
+			<a href="/2022/02/14/%E8%BD%AC%E5%80%BA/%E5%8F%8C%E7%AE%AD%E8%BD%AC%E5%80%BA%E4%B8%AD%E7%AD%BE%E7%BB%93%E6%9E%9C%E5%87%BA%E7%82%89%EF%BC%8C%E5%9F%8E%E5%B8%82%E8%BD%AC%E5%80%BA0215%E4%B8%8A%E5%B8%82%E9%A2%84%E6%B5%8B/">
+				<h2 class="index-title">
+					双箭转债中签结果出炉，城市转债0215上市预测
+				</h2>
+				<div class="index-brief">
+					简评1、互联网券商龙头东方财富今天暴跌13+%，其转债 东财3 也大跌13+%，现价117.4，离东财3的最后交易日（2月28日）也没几天了，期待东财4吧；2、今日可转债市场只有10只上涨的，下跌共375只，转债等权指数也下跌3.1%，除了岩土转债涨了8.73%，最高的涨幅也只有3.8%；虎年最惨行
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2022-02-14</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/可转债打新/">可转债打新</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
 	
-	<span>一梦想佳</span>
-	<span>2021-06-17 18:34:20</span>
-		<div id="article-categories">
-    
-
-    
-		</div>
-
+	
+	<div id="index-paginator">
+		
+	</div>
 </div>
 
-<div id="article-content">
-	<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>一梦想佳：一白日梦想家的笔记，记录生活，分享美好的事物；</p>
-<p>可转债爱好者，低风险投资爱好者，专注于可转债打新、抢权配售、新股打新、港美股打新、低风险套利等方向；</p>
-<p>目标：专业的测评、详实的数据、做到有料有趣；</p>
-<p><strong>本站只用于记录本人观点，不构成投资建议</strong></p>
-<h2 id="打赏"><a href="#打赏" class="headerlink" title="打赏"></a>打赏</h2><p>码字不易，如果觉得有用，<strong>支付宝</strong>可以给我打赏~~多谢<br><img src="/imgs/zhifubao.png" alt="支付宝打赏"></p>
-<h2 id="其他平台"><a href="#其他平台" class="headerlink" title="其他平台"></a>其他平台</h2><p>如果觉得本站的文章有所帮助，欢迎关注我的公众号或者其他平台，也可以分享给身边的朋友，关注不走丢~~</p>
-<ul>
-<li><strong>微信公众号</strong>：<br>  <img src="/imgs/weixin-soso.png" alt="微信公众号"></li>
-<li><strong>头条号</strong>：<br>  <img src="/imgs/toutiao.png" alt="头条号"></li>
-<li><strong>百家号</strong>：<br>  <img src="/imgs/baijiahao.png" alt="百家号"></li>
-<li>东方财富：搜索【一梦想佳笔记】</li>
-<li>网易号：搜索【一梦想佳】</li>
-</ul>
-
-</div>
-
-
-
-
-	<div id="vcomments"></div>
-
-
-<script>
-	
-		// 评论
-		new Valine({
-			el: '#vcomments',
-			appId: 'GpglQRw5ituoECQznBGT5U5G-gzGzoHsz',
-			appKey: 'D696tKLJVpmDbnVSTeIDmj4s',
-			placeholder: '请输入评论',
-			path: window.location.pathname,
-			avatar: 'retro',
-			highlight: false,
-      recordIP: true,
-      enableQQ: true,
-			requiredFields: ['nick','mail']
-		})
-	
-	
-    // 显示次数
-		function showTime(Counter) {
-			var query = new AV.Query("Counter");
-			if($(".leancloud_visitors").length > 0){
-				var url = $(".leancloud_visitors").attr('id').trim();
-				// where field
-				query.equalTo("words", url);
-				// count
-				query.count().then(function (number) {
-					// There are number instances of MyClass where words equals url.
-					$(document.getElementById(url)).text(number?  number : '--');
-				}, function (error) {
-					// error is an instance of AVError.
-				});
-			}
-		}
-		// 追加pv
-		function addCount(Counter) {
-			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'vandyzhou.github.io';
-			var Counter = AV.Object.extend("Counter");
-			var query = new Counter;
-			query.save({
-				words: url
-			}).then(function (object) {
-			})
-		}
-		$(function () {
-			var Counter = AV.Object.extend("Counter");
-			addCount(Counter);
-			showTime(Counter);
-		});
-	
-</script>
 	</div>
 	<div id="footer">
 	<p>
